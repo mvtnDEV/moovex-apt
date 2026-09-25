@@ -1,0 +1,71 @@
+erDiagram
+    STORE ||--o{ ORDER : "genera"
+    STORE ||--o{ USER : "tiene (STORE_ADMIN)"
+    STORE ||--o{ ALERT : "recibe"
+    ORDER ||--|{ ORDER_EVENT : "historial"
+    ORDER ||--o| DELIVERY_EVIDENCE : "prueba de entrega"
+    ORDER ||--o{ ALERT : "dispara"
+
+    STORE {
+        string id PK
+        string name
+        Platform_array platforms "MERCADOLIBRE|WOOCOMMERCE|SHOPIFY|MANUAL"
+        string pickupAddress
+        boolean active
+    }
+    USER {
+        string id PK
+        string email
+        string password
+        string name
+        UserRole role "SUPER_ADMIN|STORE_ADMIN"
+        string storeId FK "opcional"
+    }
+    ORDER {
+        string id PK
+        string orderNumber
+        string qrCode
+        string sourceId
+        string externalId
+        string storeId FK
+        string subStoreName
+        Platform platform
+        string customerName
+        string customerPhone
+        string customerEmail
+        string addressStreet
+        string addressComuna
+        string addressNotes
+        int packageCount
+        OrderStatus status "PENDING|RECEIVED|IN_TRANSIT|DELIVERED|INCIDENT|CANCELLED"
+        datetime createdAt
+        datetime receivedAt
+        datetime inTransitAt
+        datetime deliveredAt
+        string incidentReason
+        boolean labelPrinted
+    }
+    ORDER_EVENT {
+        string id PK
+        OrderStatus status
+        string note
+        string createdBy
+        datetime createdAt
+    }
+    DELIVERY_EVIDENCE {
+        string photoUrl
+        string receptorName
+        string receptorRut
+        string note
+    }
+    ALERT {
+        string id PK
+        AlertType type "STALLED_IN_TRANSIT|NOT_SENT|DELIVERY_FAILED|MULTIPLE_INCIDENTS"
+        AlertSeverity severity "warning|critical"
+        string message
+        string orderId FK "opcional"
+        string orderNumber
+        string storeId FK "opcional"
+        datetime createdAt
+        boolean resolved
+    }

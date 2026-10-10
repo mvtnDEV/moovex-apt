@@ -1,0 +1,117 @@
+
+ RUN  v2.1.9 C:/Users/MVTN/Desktop/moovex-apt/Pruebas
+
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > acepta Metropolitana
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > acepta Región Metropolitana
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > acepta region metropolitana
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > acepta RM
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > acepta Metropolitana de Santiago
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > rechaza Valparaíso
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > rechaza Biobío
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > rechaza Antofagasta
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > rechaza Araucanía
+ ✓ tests/pedidos.test.ts > PU-14 · Región permitida (solo RM) > H-05 · una región vacía se considera permitida (validar en el formulario)
+ ✓ tests/pedidos.test.ts > PU-15 · updateOrderStatus > DELIVERED guarda deliveredAt y crea el evento de historial
+ ✓ tests/pedidos.test.ts > PU-15 · updateOrderStatus > IN_TRANSIT guarda inTransitAt; RECEIVED guarda receivedAt
+ ✓ tests/pedidos.test.ts > PU-15 · updateOrderStatus > nota y autor por defecto
+ ✓ tests/pedidos.test.ts > PU-15 · updateOrderStatus > H-06 · NO valida transiciones: un pedido DELIVERED puede volver a PENDING
+ ✓ tests/facturacion.test.ts > Autorización y parámetros > PS-04 · rechaza sin sesión (401)
+ ✓ tests/facturacion.test.ts > Autorización y parámetros > PS-04 · rechaza a un STORE_ADMIN (401)
+ ✓ tests/facturacion.test.ts > Autorización y parámetros > PU-06 · exige el parámetro mes (400)
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Santiago → URBANA
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Las Condes → URBANA
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Ñuñoa → URBANA
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Colina → EXTRA_URBANA
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Padre Hurtado → EXTRA_URBANA
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Paine → RURAL
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Melipilla → RURAL
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Peñaflor → RURAL
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · PENAFLOR → RURAL
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Til Til → RURAL
+ ✓ tests/facturacion.test.ts > Clasificación de zona por comuna > PU-02 · Isla de Maipo → RURAL
+ ✓ tests/facturacion.test.ts > Cálculo de totales e IVA 19 % > PU-01 · reproduce la captura 08-facturacion.png (34 urbana + 8 extra + 3 rural)
+ ✓ tests/facturacion.test.ts > Cálculo de totales e IVA 19 % > PU-03 · mes sin pedidos factura 0
+ ✓ tests/facturacion.test.ts > Cálculo de totales e IVA 19 % > PU-04 · el IVA se redondea al peso (1 pedido urbano: 1.800 + 342 = 2.142)
+ ✓ tests/facturacion.test.ts > Cálculo de totales e IVA 19 % > PU-05 · descarta pedidos sin ninguna fecha de facturación
+ ✓ tests/facturacion.test.ts > Cálculo de totales e IVA 19 % > usa inTransitAt como fecha cuando no hay receivedAt
+ ✓ tests/facturacion.test.ts > Servicios CAMBIO / RETIRO (tarifa fija) > PU-07 · cobra tarifa fija sin importar la zona
+ ✓ tests/facturacion.test.ts > Servicios CAMBIO / RETIRO (tarifa fija) > PU-08 · un cambio/retiro con incidencia NO se cobra
+ ✓ tests/facturacion.test.ts > Servicios CAMBIO / RETIRO (tarifa fija) > PU-09 · un pedido normal con incidencia SÍ se cobra
+ ✓ tests/facturacion.test.ts > Servicios CAMBIO / RETIRO (tarifa fija) > sin tarifaCambio configurada, CAMBIO se cobra como pedido por zona
+ ✓ tests/facturacion.test.ts > Comportamiento documentado (hallazgo) > H-01 · la facturación es POR PEDIDO: los bultos no multiplican la tarifa
+ ✓ tests/seguridad.test.ts > PU-10 · Cifrado AES-256-GCM de credenciales > descifra lo que cifra
+ ✓ tests/seguridad.test.ts > PU-10 · Cifrado AES-256-GCM de credenciales > usa un IV distinto cada vez (mismo texto → distinto cifrado)
+ ✓ tests/seguridad.test.ts > PU-10 · Cifrado AES-256-GCM de credenciales > el texto cifrado no contiene el original
+ ✓ tests/seguridad.test.ts > PU-10 · Cifrado AES-256-GCM de credenciales > PS-05 · detecta manipulación del cifrado (GCM)
+stderr | tests/seguridad.test.ts > PU-12 · Rate limiting > H-02 · si la BD falla, deja pasar (fail-open, decisión de diseño documentada)
+[RateLimit error] Error: db caída
+    at Object.count (C:\Users\MVTN\Desktop\moovex-apt\Pruebas\tests\seguridad.test.ts:7:30)
+    at Module.checkRateLimit (C:\Users\MVTN\Desktop\sendflow\src\lib\utils\rate-limit.ts:18:44)
+    at C:\Users\MVTN\Desktop\moovex-apt\Pruebas\tests\seguridad.test.ts:60:18
+    at file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at runSuite (file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///C:/Users/MVTN/Desktop/moovex-apt/Pruebas/node_modules/@vitest/runner/dist/index.js:1262:5)
+
+stdout | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PU-13 · acepta una firma HMAC válida
+[Fret webhook] delivery:  | event:  | body: {"event":"order.status","data":{}}
+
+stderr | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PU-13 · acepta una firma HMAC válida
+[Fret webhook] Falta referencia
+
+stdout | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-01 · rechaza firma inválida (401)
+[Fret webhook] delivery:  | event:  | body: {"event":"order.status","data":{}}
+
+stderr | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-01 · rechaza firma inválida (401)
+[Fret webhook] Firma inválida
+
+stdout | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-02 · rechaza firma vencida (> 5 min) (401)
+[Fret webhook] delivery:  | event:  | body: {"event":"order.status","data":{}}
+
+stderr | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-02 · rechaza firma vencida (> 5 min) (401)
+[Fret webhook] Firma inválida
+
+stdout | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-03 · rechaza cuerpo alterado tras firmar (401)
+[Fret webhook] delivery:  | event:  | body: {"event":"order.status","data":{}} 
+
+stderr | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-03 · rechaza cuerpo alterado tras firmar (401)
+[Fret webhook] Firma inválida
+
+stdout | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > H-04 · VULNERABILIDAD: una petición SIN cabecera de firma se procesa igual (200)
+[Fret webhook] delivery:  | event:  | body: {"event":"order.status","data":{}}
+
+stderr | tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > H-04 · VULNERABILIDAD: una petición SIN cabecera de firma se procesa igual (200)
+[Fret webhook] Falta referencia
+
+ ✓ tests/seguridad.test.ts > PU-11 · Contraseñas con bcrypt > verifica la correcta y rechaza la incorrecta 814ms
+ ✓ tests/seguridad.test.ts > PU-12 · Rate limiting > permite hasta el máximo y bloquea después
+ ✓ tests/seguridad.test.ts > PU-12 · Rate limiting > H-02 · si la BD falla, deja pasar (fail-open, decisión de diseño documentada)
+ ✓ tests/seguridad.test.ts > PU-12 · Rate limiting > clientIp toma la primera IP de x-forwarded-for
+ ✓ tests/seguridad.test.ts > PS-06 · Cabeceras de seguridad (next.config.js) > HSTS, nosniff, DENY frames, Referrer-Policy
+ ✓ tests/seguridad.test.ts > PS-06 · Cabeceras de seguridad (next.config.js) > CSP bloquea frames de terceros
+ ✓ tests/seguridad.test.ts > PS-06 · Cabeceras de seguridad (next.config.js) > H-03 · la CSP todavía permite unsafe-inline y unsafe-eval (mejora pendiente)
+ ✓ tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PU-13 · acepta una firma HMAC válida
+ ✓ tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-01 · rechaza firma inválida (401)
+ ✓ tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-02 · rechaza firma vencida (> 5 min) (401)
+ ✓ tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > PS-03 · rechaza cuerpo alterado tras firmar (401)
+ ✓ tests/seguridad.test.ts > Webhook Fret (POST /api/webhooks/fret) > H-04 · VULNERABILIDAD: una petición SIN cabecera de firma se procesa igual (200)
+ ✓ tests/seguridad.test.ts > PI-06 · Tracking público (GET /api/tracking) > exige parámetro de búsqueda (400)
+ ✓ tests/seguridad.test.ts > PI-06 · Tracking público (GET /api/tracking) > pedido inexistente → 404 con mensaje genérico
+ ✓ tests/seguridad.test.ts > PI-06 · Tracking público (GET /api/tracking) > PS-07 · responde 429 al superar 30 consultas/min
+stdout | tests/rendimiento.test.ts > PR-01 · facturación con volumen > 1000 pedidos por tienda × 10 tiendas
+[PR-01] 10000 pedidos totales → 97 ms
+
+stdout | tests/rendimiento.test.ts > PR-01 · facturación con volumen > 10000 pedidos por tienda × 10 tiendas
+[PR-01] 100000 pedidos totales → 614 ms
+
+ ✓ tests/rendimiento.test.ts > PR-01 · facturación con volumen > 1000 pedidos por tienda × 10 tiendas
+ ✓ tests/rendimiento.test.ts > PR-01 · facturación con volumen > 10000 pedidos por tienda × 10 tiendas 799ms
+
+ Test Files  4 passed (4)
+      Tests  59 passed (59)
+   Start at  19:58:53
+   Duration  1.53s (transform 339ms, setup 0ms, collect 611ms, tests 1.85s, environment 1ms, prepare 589ms)
+

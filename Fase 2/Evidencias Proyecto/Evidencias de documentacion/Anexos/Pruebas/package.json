@@ -1,0 +1,12 @@
+{
+  "name": "moovex-pruebas",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:report": "vitest run --reporter=verbose --reporter=json --outputFile.json=resultados.json"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

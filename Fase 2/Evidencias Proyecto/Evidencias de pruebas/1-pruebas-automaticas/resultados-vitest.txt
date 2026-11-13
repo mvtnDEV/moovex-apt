@@ -1,0 +1,113 @@
+
+ RUN  v2.1.9 moovex-demo
+
+ ✓ src/lib/apply.test.ts > applyAction · create > agrega los pedidos nuevos como PENDING con su evento inicial
+ ✓ src/lib/apply.test.ts > applyAction · create > es idempotente: aplicar la misma acción dos veces no duplica
+ ✓ src/lib/apply.test.ts > applyAction · create > no agrega un pedido cuya referencia externa ya existe en la misma tienda
+ ✓ src/lib/apply.test.ts > applyAction · create > la misma referencia en otra tienda sí se agrega
+ ✓ src/lib/apply.test.ts > applyAction · create > un pedido creado se puede recepcionar después
+ ✓ src/lib/apply.test.ts > applyAction · plan > no cambia los pedidos
+ ✓ src/lib/alertas.test.ts > deriveAlerts > sin pedidos no hay alertas
+ ✓ src/lib/alertas.test.ts > deriveAlerts > un pedido en camino hace más de 4 h genera STALLED_IN_TRANSIT
+ ✓ src/lib/alertas.test.ts > deriveAlerts > más de 24 h en camino es crítica
+ ✓ src/lib/alertas.test.ts > deriveAlerts > en camino hace menos de 4 h no genera alerta
+ ✓ src/lib/alertas.test.ts > deriveAlerts > recepcionado hace más de 1 h sin despachar genera NOT_SENT
+ ✓ src/lib/alertas.test.ts > deriveAlerts > una incidencia genera DELIVERY_FAILED crítica
+ ✓ src/lib/alertas.test.ts > deriveAlerts > dos incidencias de la misma tienda suman MULTIPLE_INCIDENTS
+ ✓ src/lib/alertas.test.ts > deriveAlerts > los ids son estables entre llamadas
+ ✓ src/lib/nuevoPedido.test.ts > normalizarComuna > ignora mayúsculas y tildes
+ ✓ src/lib/nuevoPedido.test.ts > normalizarComuna > una comuna desconocida da null
+ ✓ src/lib/nuevoPedido.test.ts > buildOrder > arma un pedido PENDING manual con su evento inicial
+ ✓ src/lib/nuevoPedido.test.ts > buildOrder > dos pedidos creados en el mismo instante tienen ids, números y QR distintos
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > lee una fila válida
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > con BOM, separador ; y saltos de línea de Windows se lee igual
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > una coma dentro de comillas no parte el campo
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > rechaza con motivo y número de fila las comunas desconocidas y los bultos inválidos
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > rechaza una referencia repetida dentro del mismo archivo
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > un archivo vacío o solo con encabezado no acepta ni rechaza nada
+ ✓ src/lib/nuevoPedido.test.ts > parseCsv > el CSV de ejemplo se acepta completo
+ ✓ src/lib/zonas.test.ts > comunasTop > cuenta por comuna, ordena de mayor a menor y desempata por nombre
+ ✓ src/lib/zonas.test.ts > comunasTop > sin pedidos devuelve una lista vacía
+ ✓ src/lib/zonas.test.ts > routesByZone > calcula el avance de cada ruta con lo entregado hoy y lo que va en camino
+ ✓ src/lib/trazado.test.ts > trazadoEstimado > da un tramo por parada más el regreso, en línea recta
+ ✓ src/lib/trazado.test.ts > trazadoEstimado > sin paradas no hay tramos
+ ✓ src/lib/trazado.test.ts > ventanasRuta > una ruta corta cabe en una sola consulta
+ ✓ src/lib/trazado.test.ts > ventanasRuta > las rutas largas se parten en ventanas de 25 puntos que comparten el punto de unión
+ ✓ src/lib/trazado.test.ts > trazadoZona > usa Mapbox y deja el resultado en caché
+ ✓ src/lib/trazado.test.ts > trazadoZona > si la red falla cae al trazado estimado
+ ✓ src/lib/trazado.test.ts > trazadoZona > sin token no llama a Mapbox
+ ✓ src/lib/trazado.test.ts > trazadoZona > con más de 23 paradas pide la ruta por tramos encadenados y la une completa
+ ✓ src/lib/trazado.test.ts > trazadoZona > si un tramo falla, toda la ruta cae al trazado estimado
+ ✓ src/lib/trazado.test.ts > trazadoZona > dos pedidos simultáneos de la misma ruta comparten una sola consulta
+ ✓ src/lib/trazado.test.ts > trazadoZona > sin localStorage no lanza
+ ✓ src/lib/lotes.test.ts > localDate > devuelve YYYY-MM-DD en hora local
+ ✓ src/lib/lotes.test.ts > deriveLotes > agrupa por cliente y por fecha local
+ ✓ src/lib/lotes.test.ts > deriveLotes > total es scan más sin código y declarado es total más faltan
+ ✓ src/lib/lotes.test.ts > deriveLotes > scan + sin código suman los bultos de los pedidos del lote
+ ✓ src/lib/lotes.test.ts > deriveLotes > ignora los pedidos PENDING
+ ✓ src/lib/lotes.test.ts > deriveLotes > es determinista
+ ✓ src/lib/lotes.test.ts > deriveLotes > no parte un lote por la medianoche y separa días distintos
+ ✓ src/lib/lotes.test.ts > deriveLotes > devuelve vacío sin pedidos
+ ✓ src/lib/lotes.test.ts > deriveLotes > ordena del más reciente al más antiguo
+ ✓ src/lib/lotes.test.ts > deriveEsperados > agrupa los PENDING por cliente con scan 0
+ ✓ src/lib/lotes.test.ts > determinismo de datos de demostración > pedidoSinCodigo nunca supera los bultos y ronda 1 de cada 12
+ ✓ src/lib/lotes.test.ts > determinismo de datos de demostración > faltanDelLote es 0 en la mayoría y 1 o 2 en el resto
+ ✓ src/lib/lotes.test.ts > determinismo de datos de demostración > sobre los pedidos de la demo hay lotes COMPLETO y lotes FALTAN
+ ✓ src/lib/exportar.test.ts > filasExcel > una fila por pedido con las mismas columnas que SendFlow
+ ✓ src/lib/exportar.test.ts > filasExcel > valores faltantes quedan vacíos o con guion, sin 'undefined' ni 'null'
+ ✓ src/lib/exportar.test.ts > filasExcel > sin pedidos no hay filas
+ ✓ src/lib/exportar.test.ts > nombreArchivo > lleva el periodo y la fecha
+ ✓ src/lib/billing.test.ts > zoneForComuna > clasifica por comuna, como SendFlow
+ ✓ src/lib/billing.test.ts > buildBilling > cuenta solo entregados del mes pedido, valoriza por zona y calcula IVA 19%
+ ✓ src/lib/billing.test.ts > buildBilling > filtrar por cliente deja solo sus filas, y la suma de clientes iguala al total
+ ✓ src/lib/billing.test.ts > buildBilling > usa las tarifas que se le pasen
+ ✓ src/lib/billing.test.ts > buildBilling > sin despachos todo es cero y no hay filas
+ ✓ src/lib/billing.test.ts > monthOptions > devuelve 6 meses empezando por el actual
+ ✓ src/lib/revision.test.ts > importar el mismo CSV sin columna referencia > da a cada fila la misma referencia automática cada vez, así applyAction no duplica
+ ✓ src/lib/revision.test.ts > importar el mismo CSV sin columna referencia > dos filas idénticas en el mismo archivo: la segunda se rechaza
+ ✓ src/lib/revision.test.ts > importar el mismo CSV sin columna referencia > el mismo contenido en otra tienda no se considera repetido
+ ✓ src/lib/revision.test.ts > decodificarCsv > lee UTF-8
+ ✓ src/lib/revision.test.ts > decodificarCsv > lee Windows-1252 (CSV de Excel en español) cuando no es UTF-8 válido
+ ✓ src/lib/revision.test.ts > applyAction · entregar/incidencia solo desde EN CAMINO > un pedido ya entregado no pasa a incidencia
+ ✓ src/lib/revision.test.ts > applyAction · entregar/incidencia solo desde EN CAMINO > un pedido con incidencia no pasa a entregado
+ ✓ src/lib/revision.test.ts > applyAction · entregar/incidencia solo desde EN CAMINO > un pedido sin despachar no se puede entregar
+ ✓ src/lib/revision.test.ts > applyAction · entregar/incidencia solo desde EN CAMINO > un pedido en camino sí
+ ✓ src/lib/revision.test.ts > localStorage lleno de trazados > solo se conserva el último trazado de cada zona
+ ✓ src/lib/revision.test.ts > localStorage lleno de trazados > reiniciar la demo borra también los trazados guardados
+ ✓ src/lib/etiqueta.test.ts > parseServicio > un pedido normal es ENTREGA
+ ✓ src/lib/etiqueta.test.ts > parseServicio > lee un RETIRO y deja solo las referencias
+ ✓ src/lib/etiqueta.test.ts > parseServicio > lee un CAMBIO con la dirección de retiro y las referencias
+ ✓ src/lib/etiqueta.test.ts > parseServicio > marcado solo por sub-tienda: tipo correcto y notas tal cual
+ ✓ src/lib/etiqueta.test.ts > etiquetaHTML > la etiqueta de entrega trae destinatario, dirección, tienda, QR y el número de pedido
+ ✓ src/lib/etiqueta.test.ts > etiquetaHTML > el retiro lleva la franja RETIRO y RETIRAR EN, sin textos técnicos ni instrucción al pie
+ ✓ src/lib/etiqueta.test.ts > etiquetaHTML > el cambio lleva ENTREGAR EN y RETIRAR EN con la dirección de retiro
+ ✓ src/lib/etiqueta.test.ts > etiquetaHTML > escapa los datos del cliente (no se inyecta HTML)
+ ✓ src/lib/etiqueta.test.ts > etiquetaHTML > sin teléfono ni referencias no imprime esas filas
+ ✓ src/lib/etiqueta.test.ts > armarDocumento > es una página de 10×15 cm que imprime sola y separa una etiqueta por hoja
+ ✓ src/lib/etiqueta.test.ts > trackingUrl > apunta a la página de seguimiento con el número de pedido
+ ✓ src/lib/rutas.test.ts > construirPlan > sin plan previo ordena los pedidos en camino de la zona con el optimizador
+ ✓ src/lib/rutas.test.ts > construirPlan > conserva adelante los pedidos ya entregados, en su orden, y reordena solo lo pendiente
+ ✓ src/lib/rutas.test.ts > construirPlan > descarta ids que ya no existen
+ ✓ src/lib/rutas.test.ts > construirPlan > una zona sin pedidos da un plan vacío
+ ✓ src/lib/rutas.test.ts > rutaDelDia > devuelve null si el plan está vacío
+ ✓ src/lib/rutas.test.ts > rutaDelDia > arma las paradas en el orden del plan con un tramo por parada más el regreso
+ ✓ src/lib/rutas.test.ts > rutaDelDia > al entregar la primera parada suma el tramo exacto de esa parada
+ ✓ src/lib/rutas.test.ts > rutaDelDia > una incidencia cuenta como parada hecha y se informa aparte
+ ✓ src/lib/rutas.test.ts > rutaDelDia > con todas las paradas hechas suma también el regreso a la bodega
+ ✓ src/lib/rutas.test.ts > rutaDelDia > cada parada queda en el último punto de su tramo
+ ✓ src/lib/rutas.test.ts > rutaDelDia > si falta un pedido del plan lo omite en vez de inventarlo
+ ✓ src/lib/rutas.test.ts > rutaDelDia > el ahorro nunca es negativo
+ ✓ src/lib/apply.plan.test.ts > applyPlan > guarda el último plan de cada zona y lo reemplaza
+ ✓ src/lib/apply.plan.test.ts > applyPlan > ignora las acciones que no son de plan
+ ✓ src/lib/planificador.test.ts > optimizeOrder > visita todas las paradas una sola vez
+ ✓ src/lib/planificador.test.ts > optimizeOrder > en una línea recta recorre en orden
+ ✓ src/lib/planificador.test.ts > planificarZona > incluye exactamente los pedidos en camino de la zona, sin repetir
+ ✓ src/lib/planificador.test.ts > planificarZona > nunca empeora el orden simple
+ ✓ src/lib/planificador.test.ts > planificarZona > los tramos de las paradas suman el recorrido sin la vuelta a la bodega
+ ✓ src/lib/planificador.test.ts > planificarZona > una zona sin pedidos da un plan vacío
+
+ Test Files  13 passed (13)
+      Tests  104 passed (104)
+   Start at  21:22:08
+   Duration  2.01s (transform 7.52s, setup 0ms, collect 8.57s, tests 393ms, environment 3ms, prepare 5.43s)
+
